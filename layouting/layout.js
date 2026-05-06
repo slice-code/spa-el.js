@@ -21,6 +21,7 @@
   let sideMenus = [];
   let navbarMenus = [];
   let currentTheme = 'default';
+  let navbarTitleText = 'Core App'; // Default navbar title
   let openDropdowns = new Set(); // Track which dropdowns are open
   let currentRole = null; // RBAC: current user role
   const middlewares = []; // Middleware stack
@@ -482,6 +483,14 @@
     }
     currentTheme = themeName;
     applyTheme();
+  };
+
+  // Set navbar title text
+  layout.setNavbarTitle = function(title) {
+    navbarTitleText = title || 'Core App';
+    if (connector.navbarTitle) {
+      el(connector.navbarTitle).text(navbarTitleText).get();
+    }
   };
 
   layout.setCustomTheme = function(config) {
@@ -1352,6 +1361,8 @@ ${getThemeStyleCSS()}`;
         // Regular menu item
         const isActive = activePage === item.page || (item.page !== '/' && activePage.startsWith(item.page + '/'));
         return el('a')
+          .display('flex')
+          .items('center')
           .cursor('pointer')
           .class('sidebar-item' + (isActive ? ' active' : ''))
           .click(() => {
@@ -1391,6 +1402,7 @@ ${getThemeStyleCSS()}`;
           const isActive = currentPage === child.page;
           return el('a')
             .display('flex')
+            .items('center')
             .cursor('pointer')
             .padding('4px 0.5rem')
             .class('sidebar-dropdown-item' + (isActive ? ' active' : ''))
@@ -1795,7 +1807,7 @@ ${getThemeStyleCSS()}`).attr('data-theme-style', 'true').get();
       ).click(() => {
         layout.navigate('/');
       }),
-      el('a').link(connector, 'navbarTitle').size('16px').css({ color: cssLayouting[isMobile ? 'mobile' : 'desktop'].navBar.color, cursor: 'pointer' }).text("Kasir POS").click(() => {
+      el('a').link(connector, 'navbarTitle').size('16px').css({ color: cssLayouting[isMobile ? 'mobile' : 'desktop'].navBar.color, cursor: 'pointer' }).text(navbarTitleText).click(() => {
         layout.navigate('/');
       }),
       el('div').link(connector, 'sidebarHideSwitchSlot'),

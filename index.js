@@ -116,13 +116,50 @@ async function loadAppJsonPages(core) {
 }
 
 // ============================================
+// Load Menu from API
+// ============================================
+async function loadMenuConfig(core) {
+  try {
+    console.log('Loading menu configuration from /api/menu...');
+    const response = await fetch(`${API_BASE}/api/menu`);
+    const result = await response.json();
+    
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to load menu config');
+    }
+    
+    const menuConfig = result.data;
+    
+    // Update core with menu configuration
+    if (menuConfig.sideMenu) {
+      core.layoutConfig.sideMenu = menuConfig.sideMenu;
+    }
+    if (menuConfig.navbar) {
+      core.layoutConfig.navbar = menuConfig.navbar;
+    }
+    if (menuConfig.theme) {
+      core.layoutConfig.theme = menuConfig.theme;
+    }
+    if (menuConfig.navbarTitle) {
+      core.layoutConfig.navbarTitle = menuConfig.navbarTitle;
+    }
+    
+    console.log('✓ Menu configuration loaded');
+    return menuConfig;
+  } catch (error) {
+    console.warn('Failed to load menu config, using defaults:', error);
+    return null;
+  }
+}
+
+// ============================================
 // Main App Initialization
 // ============================================
 window.addEventListener('DOMContentLoaded', async () => {
   
   console.log('Loading Core App...');
   
-  // Initialize Core App with placeholder for dynamic menus
+  // Initialize Core App with placeholder menus
   const core = new CoreApp({
     api: {
       baseUrl: `${API_BASE}/api`,
@@ -130,24 +167,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     },
     layout: {
       theme: 'blue',
-      sideMenu: [
-        { name: 'Dashboard', icon: 'fas fa-home', page: '/' },
-        { name: 'Data Management', icon: 'fas fa-database', children: [] },
-        { name: 'Pages', icon: 'fas fa-file', children: [
-          { name: 'About', icon: 'fas fa-info-circle', page: '/about' },
-          { name: 'Contact', icon: 'fas fa-envelope', page: '/contact' }
-        ]},
-        { name: 'Layout Demos', icon: 'fas fa-layer-group', children: [
-          { name: 'Full Width', icon: 'fas fa-expand', page: '/full' },
-          { name: 'Login Page', icon: 'fas fa-sign-in-alt', page: '/login' }
-        ]}
-      ],
-      navbar: [
-        { name: 'Dashboard', page: '/' }
-      ]
+      sideMenu: [],
+      navbar: []
     }
   });
-
+  
+  // ============================================
+  // 0. Load Menu Configuration (before pages)
+  // ============================================
+  await loadMenuConfig(core);
+  
   // ============================================
   // 1. Load Database Schemas (for SchemaManager/DDL only)
   // ============================================
@@ -160,10 +189,10 @@ window.addEventListener('DOMContentLoaded', async () => {
   
   // Update Data Management menu with CRUD items from appjson
   const dataMgmtItem = core.layoutConfig.sideMenu.find(item => item.name === 'Data Management');
-  if (dataMgmtItem) {
+  if (dataMgmtItem && crudMenuItems.length > 0) {
     dataMgmtItem.children = crudMenuItems;
   }
-
+  
   // ============================================
   // 3. Load Hardcoded Pages
   // ============================================
@@ -174,6 +203,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   // ============================================
   console.log('Starting Core App...');
   core.init();
+  
+  // Set navbar title from menu config
+  if (core.layoutConfig.navbarTitle) {
+    layout.setNavbarTitle(core.layoutConfig.navbarTitle);
+  }
+  
   console.log('✅ Core App initialized successfully!');
 });
 

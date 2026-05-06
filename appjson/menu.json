@@ -1,0 +1,25 @@
+{
+  "navbarTitle": "Core App",
+  "sideMenu": [
+    {
+      "name": "Dashboard",
+      "icon": "fas fa-home",
+      "page": "/"
+    },
+    {
+      "name": "Data Management",
+      "icon": "fas fa-database",
+      "children": []
+    },
+    {
+      "name": "Pages",
+      "icon": "fas fa-file",
+      "children": [
+        { "name": "About", "icon": "fas fa-info-circle", "page": "/about" }
+      ]
+    }
+  ],
+  "navbar": [
+    { "name": "Dashboard", "page": "/" }
+  ]
+}

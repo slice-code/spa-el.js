@@ -179,7 +179,7 @@ function handleApiRoutes(req, res) {
   // GET /api/pages - List all available pages
   if (req.url === '/api/pages' && req.method === 'GET') {
     try {
-      const files = fs.readdirSync(appjsonDir).filter(f => f.endsWith('.json'));
+      const files = fs.readdirSync(appjsonDir).filter(f => f.endsWith('.json') && f !== 'menu.json');
       const pages = files.map(file => {
         const content = JSON.parse(fs.readFileSync(path.join(appjsonDir, file), 'utf8'));
         return {
@@ -192,6 +192,26 @@ function handleApiRoutes(req, res) {
       
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ success: true, data: pages }));
+      return true;
+    } catch (error) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: false, error: error.message }));
+      return true;
+    }
+  }
+
+  // GET /api/menu - Get menu configuration
+  if (req.url === '/api/menu' && req.method === 'GET') {
+    try {
+      const menuPath = path.join(appjsonDir, 'menu.json');
+      if (!fs.existsSync(menuPath)) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, error: 'Menu configuration not found' }));
+        return true;
+      }
+      const content = JSON.parse(fs.readFileSync(menuPath, 'utf8'));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ success: true, data: content }));
       return true;
     } catch (error) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
