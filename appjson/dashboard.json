@@ -4,6 +4,7 @@
   "config": {
     "title": "Dashboard",
     "subtitle": "Welcome to Core App - JSON-Driven UI Framework",
+    "gap": "0.75rem",
     "children": [
       {
         "type": "card",

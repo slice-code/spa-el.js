@@ -82,7 +82,7 @@
       const container = el('div').css({
         display: 'flex',
         flexDirection: 'column',
-        gap: '1.5rem'
+        gap: schema.gap || '1.5rem'
       });
 
       // Title
