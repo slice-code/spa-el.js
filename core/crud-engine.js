@@ -35,11 +35,12 @@
         overflow: 'hidden'
       });
 
-      // Header bar: title + search + create button in one row
+      // Header bar: title + search + create button (responsive)
       const header = el('div').css({
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        gap: '1rem',
+        gap: '0.5rem',
         padding: '0.75rem 1rem',
         borderBottom: '1px solid #e5e7eb',
         backgroundColor: '#fff',
@@ -48,35 +49,35 @@
         zIndex: '10'
       });
 
-      // Title
-      header.child(
-        el('h2')
-          .text(schema.title || 'CRUD')
-          .css({
-            margin: '0',
-            fontSize: '1.25rem',
-            fontWeight: '600',
-            color: '#111827',
-            whiteSpace: 'nowrap'
-          })
-      );
+      // Title (left side)
+      const titleEl = el('h2')
+        .text(schema.title || 'CRUD')
+        .css({
+          margin: '0',
+          fontSize: '1.25rem',
+          fontWeight: '600',
+          color: '#111827',
+          whiteSpace: 'nowrap',
+          flexShrink: '0'
+        });
+      header.child(titleEl);
 
-      // Search input (takes remaining space)
+      // Search input (middle, pushes button to right)
       const searchInput = el('input')
         .attr('type', 'text')
         .attr('placeholder', 'Search...')
         .css({
           flex: '1',
+          minWidth: '200px',
           padding: '0.5rem 0.75rem',
           borderRadius: '0.5rem',
           border: '1px solid #d1d5db',
           fontSize: '0.875rem',
-          outline: 'none',
-          minWidth: '150px'
+          outline: 'none'
         });
       header.child(searchInput);
 
-      // Create button
+      // Create button (right side)
       if (canCreate) {
         const createButton = el('button')
           .css({
@@ -91,7 +92,8 @@
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
+            flexShrink: '0'
           });
 
         createButton.child(el('i').class('fas fa-plus'));
