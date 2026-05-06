@@ -1,0 +1,50 @@
+{
+  "path": "/about",
+  "type": "page",
+  "config": {
+    "title": "About Core App",
+    "children": [
+      {
+        "type": "card",
+        "children": [
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "About the Core App Framework"
+          },
+          {
+            "type": "text",
+            "text": "This demo shows how to create a complete application using JSON configuration. Core App is built on top of el.js and layout.js to provide a powerful, declarative way to build user interfaces."
+          }
+        ]
+      },
+      {
+        "type": "grid",
+        "columns": "repeat(auto-fit, minmax(200px, 1fr))",
+        "children": [
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "JSON-Driven" },
+              { "type": "text", "text": "Define entire UIs with simple JSON schemas. No complex templating needed." }
+            ]
+          },
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "Auto CRUD" },
+              { "type": "text", "text": "Generate complete CRUD systems from configuration in seconds." }
+            ]
+          },
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "API Ready" },
+              { "type": "text", "text": "Built-in REST API client with automatic CRUD mapping." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

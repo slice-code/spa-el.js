@@ -1,0 +1,83 @@
+{
+  "path": "/",
+  "type": "page",
+  "config": {
+    "title": "Dashboard",
+    "subtitle": "Welcome to Core App - JSON-Driven UI Framework",
+    "children": [
+      {
+        "type": "card",
+        "padding": "2rem",
+        "children": [
+          {
+            "type": "heading",
+            "level": 1,
+            "text": "Create smarter SPA layouts with el.js",
+            "fontSize": "2.2rem",
+            "fontWeight": "800"
+          },
+          {
+            "type": "text",
+            "text": "Build responsive pages that adapt to desktop and mobile, with dedicated full-width and login layouts for a cleaner user experience.",
+            "fontSize": "1rem"
+          },
+          {
+            "type": "grid",
+            "columns": "auto",
+            "gap": "0.75rem",
+            "children": [
+              {
+                "type": "button",
+                "text": "Try Full Width",
+                "variant": "primary",
+                "action": "navigate:/full"
+              },
+              {
+                "type": "button",
+                "text": "Try Login Page",
+                "variant": "outline",
+                "action": "navigate:/login"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "stats",
+        "columns": "repeat(auto-fit, minmax(240px, 1fr))",
+        "items": [
+          { "icon": "fas fa-mobile-alt", "label": "Responsive by default", "value": "Auto", "color": "#2563eb" },
+          { "icon": "fas fa-expand", "label": "Full-width pages", "value": "Available", "color": "#8b5cf6" },
+          { "icon": "fas fa-sign-in-alt", "label": "Login layouts", "value": "Built-in", "color": "#16a34a" }
+        ]
+      },
+      {
+        "type": "grid",
+        "columns": "repeat(auto-fit, minmax(240px, 1fr))",
+        "children": [
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "Responsive by default", "fontSize": "1.1rem" },
+              { "type": "text", "text": "Automatically adjust the layout for desktop and mobile views with a modern SPA experience." }
+            ]
+          },
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "Full-width desktop page", "fontSize": "1.1rem" },
+              { "type": "text", "text": "Hide the sidebar on desktop to create content-focused pages with a clean layout." }
+            ]
+          },
+          {
+            "type": "card",
+            "children": [
+              { "type": "heading", "level": 3, "text": "JSON-driven UI", "fontSize": "1.1rem" },
+              { "type": "text", "text": "Build entire applications using only JSON configuration. No manual DOM manipulation needed." }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

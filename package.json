@@ -1,0 +1,17 @@
+{
+  "name": "layouting-el",
+  "version": "1.0.0",
+  "description": "A lightweight SPA layout module built on **el.js**. Provides navbar, sidebar, routing, themes, notifications, modals, and a desktop sidebar hide toggle — all without any framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "better-sqlite3": "^12.9.0"
+  }
+}

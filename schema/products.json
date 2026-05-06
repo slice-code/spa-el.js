@@ -1,0 +1,73 @@
+{
+  "name": "products",
+  "label": "Products",
+  "plural": "products",
+  "singular": "product",
+  "primaryKey": "id",
+  "fields": [
+    {
+      "name": "id",
+      "type": "number",
+      "autoIncrement": true,
+      "required": true
+    },
+    {
+      "name": "name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "sku",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "price",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "stock",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "category",
+      "type": "enum",
+      "required": true,
+      "options": [
+        { "value": "electronics" },
+        { "value": "clothing" },
+        { "value": "food" },
+        { "value": "books" },
+        { "value": "home" }
+      ]
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "defaultValue": "draft",
+      "options": [
+        { "value": "active" },
+        { "value": "draft" },
+        { "value": "discontinued" }
+      ]
+    },
+    {
+      "name": "description",
+      "type": "textarea"
+    },
+    {
+      "name": "image",
+      "type": "url"
+    },
+    {
+      "name": "weight",
+      "type": "number"
+    }
+  ],
+  "timestamps": {
+    "createdAt": "created_at",
+    "updatedAt": "updated_at"
+  }
+}

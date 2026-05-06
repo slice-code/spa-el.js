@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core App - JSON-Driven UI Framework</title>
+    <script src="./layouting/tailwind.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .highlight { background-color: #fbbf24 !important; }
+        #output { white-space: pre-wrap; }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div id="app"></div>
+    
+    <!-- Dependencies -->
+    <script src="./el.js"></script>
+    <script src="./layouting/layout.js"></script>
+    
+    <!-- Core App Modules -->
+    <script src="./core/api-client.js"></script>
+    <script src="./core/form-builder.js"></script>
+    <script src="./core/table-builder.js"></script>
+    <script src="./core/crud-engine.js"></script>
+    <script src="./core/ui-builder.js"></script>
+    <script src="./core/core.js"></script>
+    <script src="./core/index.js"></script>
+    
+    <!-- Main Application -->
+    <script src="./index.js"></script>
+</body>
+
+</html>
